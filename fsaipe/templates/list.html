@@ -1,0 +1,10 @@
+{% for r in rows -%}
+	<tr>
+		<td><input type="checkbox" name="ed_chk_{{ name }}_{{ r.id }}"></td>
+		<td>{{ r.caption }}</td>
+		<td>
+			<button type="button" class="btn btn-info btn-xs">Editar</button>
+			<button type="button" class="btn btn-danger btn-xs">Apagar</button>
+		</td>
+	</tr>
+{%- endfor %}

@@ -1,0 +1,49 @@
+
+
+{% macro css() -%}
+  <link rel="stylesheet" href="saipe/static/fsaipe.css">
+{%- endmacro %}
+
+
+{% macro js() -%}
+  <script src="saipe/static/fsaipe.js"></script>
+{%- endmacro %}
+
+
+{% macro tabs(cfg) -%}
+  <script>
+    saipe.include('{{ cfg.name }}');
+  </script>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#saipe_tab_{{ cfg.name }}_list" role="tab" data-toggle="tab">{{ cfg.name|capitalize }}</a></li>
+    <li><a href="#saipe_tab_{{ cfg.name }}_new" role="tab" data-toggle="tab">Novo</a></li>
+    <li><a href="#saipe_tab_{{ cfg.name }}_edit" role="tab" data-toggle="tab">Editar</a></li>
+    <li><a href="#saipe_tab_{{ cfg.name }}_tranf" role="tab" data-toggle="tab">Tranferência</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="saipe_tab_{{ cfg.name }}_list">
+      <!-- aqui vao entrar os filtros -->
+      <table class="table" id="saipe_table_{{ cfg.name }}">
+        <tr><th><input type="checkbox" name="saipe_chk_{{ cfg.name }}_all"></th><th>{{ cfg.name|capitalize }}</th><th>Opções</th></tr>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="saipe_tab_{{ cfg.name }}_new">
+      <form action="" class="form-horizontal">
+        {% for field in cfg.form %}
+          <div class="form-group">
+            {{ field.label(class_="col-sm-2 control-label") }}
+            <div class="col-sm-7">
+              {{ field(class_="form-control") }}
+            </div>
+          </div>
+        {% endfor %}
+        <p><button type="submit">Submit</button></p>
+      </form>
+    </div>
+    <div class="tab-pane fade" id="saipe_tab_{{ cfg.name }}_edit"> </div>
+    <div class="tab-pane fade" id="saipe_tab_{{ cfg.name }}_tranf">
+      Aqui haverão comandos para importar/exportar dados dessa tabela.
+    </div>
+  </div>
+{%- endmacro %}
