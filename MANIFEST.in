@@ -1,3 +1,5 @@
 include README.rst
 include LICENSE
 include requirements.txt
+recursive-include fsaipe/templates *.html
+recursive-include fsaipe/static *.js *.css
